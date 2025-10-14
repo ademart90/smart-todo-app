@@ -5,6 +5,10 @@ description = "a command line todo application with advanced features powered by
 authors = [
     {name = "Martins Adelegbe"}
 ]
+packages = [
+    { include = "src" }
+]
+
 license = {text = "MIT"}
 readme = "README.md"
 requires-python = ">=3.11"
