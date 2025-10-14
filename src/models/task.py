@@ -10,7 +10,7 @@ class Task:
         self.created_at = datetime.now().isoformat()
 
     def to_dict(self):
-        """Convert Task object to dictionary (for saving to JSON)."""
+        """Convert Task object to dictionary to save to json)."""
         return {
             "id": self.id,
             "description": self.description,
@@ -20,8 +20,8 @@ class Task:
 
     @staticmethod
     def from_dict(data):
-        """Create Task object from dictionary (for loading from JSON)."""
-        return Task(
+        """Create Task object from dictionary to load from JSON)."""
+        return Task( 
             description=data["description"],
             completed=data["completed"],
             task_id=data["id"],
