@@ -1,63 +1,60 @@
-# src/models/todo_list.py
-import json
-import os
 from models.task import Task
-
-DATA_FILE = os.path.join("data", "tasks.json")
+import json
+from pathlib import Path
 
 class TodoList:
-    def __init__(self):
+    def __init__(self, storage_file="tasks.json"):
+        self.storage_file = Path(storage_file)
         self.tasks = []
         self.load_tasks()
 
-    def load_tasks(self):
-        """Load tasks from JSON file if it exists."""
-        if os.path.exists(DATA_FILE):
-            with open(DATA_FILE, "r") as file:
-                data = json.load(file)
-                self.tasks = [Task.from_dict(t) for t in data]
-        else:
-            self.tasks = []
-
-    def save_tasks(self):
-        """Save tasks to JSON file."""
-        os.makedirs("data", exist_ok=True)
-        with open(DATA_FILE, "w") as file:
-            json.dump([t.to_dict() for t in self.tasks], file, indent=4)
-
-    def add_task(self, description):
-        task = Task(description)
+    def add_task(self, task: Task):
         self.tasks.append(task)
         self.save_tasks()
-        print(f"Task added: {task.description}")
 
+    def save_tasks(self):
+        """Save all tasks as dictionaries to JSON"""
+        with open(self.storage_file, "w") as file:
+            json.dump([t.to_dict() for t in self.tasks], file, indent=4)
+
+    def load_tasks(self):
+        """Load tasks safely from JSON"""
+        if self.storage_file.exists():
+            with open(self.storage_file, "r") as file:
+                try:
+                    data = json.load(file)
+                    # Convert dictionaries back into Task objects
+                    self.tasks = [Task.from_dict(t) for t in data if isinstance(t, dict)]
+                except json.JSONDecodeError:
+                    self.tasks = []
+    
     def list_tasks(self):
-        if not self.tasks:
-            print("No tasks found.")
-            return
-        print("\n Your Tasks:")
-        for task in self.tasks:
-            print(task)
+        for i, task in enumerate(self.tasks):
+            print(f"{i}: {task}")
 
-    def update_task(self, task_id, new_description):
-        for task in self.tasks:
-            if task.id == task_id:
-                task.description = new_description
-                self.save_tasks()
-                print("Task updated successfully.")
-                return
-        print("Task not found.")
+    def search_by_keyword(self, keyword):
+        return [t for t in self.tasks if keyword.lower() in t.description.lower()]
 
-    def delete_task(self, task_id):
-        self.tasks = [t for t in self.tasks if t.id != task_id]
-        self.save_tasks()
-        print("Task deleted successfully.")
+    def search_by_priority(self, priority):
+        return [t for t in self.tasks if t.priority == priority]
 
-    def toggle_complete(self, task_id):
-        for task in self.tasks:
-            if task.id == task_id:
-                task.completed = not task.completed
-                self.save_tasks()
-                print("Task completed")
-                return
-        print("Task not found")
+    def filter_by_tag(self, tag):
+        return [t for t in self.tasks if tag in t.tags]
+
+    def filter_by_due_date(self, due_date):
+        return [t for t in self.tasks if t.due and t.due.strftime("%Y-%m-%d") == due_date]
+
+    def mark_complete(self, index):
+        self.tasks[index].completed = True
+
+    def mark_incomplete(self, index):
+        self.tasks[index].completed = False
+
+    def update_task(self, index, **kwargs):
+        task = self.tasks[index]
+        for key, value in kwargs.items():
+            if hasattr(task, key):
+                setattr(task, key, value)
+
+    def delete_task(self, index):
+        self.tasks.pop(index)
