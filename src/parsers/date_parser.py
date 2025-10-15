@@ -6,8 +6,8 @@ class DateParser:
     def __init__(self):
         # Matches common date formats
         self.date_patterns = [
-            r"\b\d{4}-\d{2}-\d{2}\b",                    # 2025-12-05
-            r"\b\d{1,2}/\d{1,2}/\d{4}\b",                # 14/10/2025
+            r"\b\d{4}-\d{2}-\d{2}\b",  # 2025-12-05
+            r"\b\d{1,2}/\d{1,2}/\d{4}\b",  # 14/10/2025
             r"\b(?:Jan|Feb|Mar|Apr|May|Jun|Jul|Aug|Sep|Oct|Nov|Dec)[a-z]*\.?\s+\d{1,2}(?:st|nd|rd|th)?,?\s+\d{4}\b"  # Oct 17th, 2025
         ]
 
