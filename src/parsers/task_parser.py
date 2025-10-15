@@ -1,24 +1,20 @@
-from .regex_patterns import TAG_PATTERN, PRIORITY_PATTERN, DATE_PATTERN, EMAIL_PATTERN
 import re
+from datetime import datetime
 
-def parse_task_input(text):
-    """Extract components from natural language task input."""
-    tags = TAG_PATTERN.findall(text)
-    priority_match = PRIORITY_PATTERN.search(text)
-    date_match = DATE_PATTERN.search(text)
-    email_match = EMAIL_PATTERN.search(text)
-
-    priority = priority_match.group(1).lower() if priority_match else None
-    due_date = date_match.group(1) if date_match else None
-    assigned_to = email_match.group(1) if email_match else None
-
-    # Extract all recognized patterns from the description
-    cleaned_text = re.sub(r'(@\w+|#\w+|due:[\w\-\s]+|assigned:[\w\.-]+@[\w\.-]+\.\w+)', '', text).strip()
-
+def parse_task(task_str):
+    tags = re.findall(r"@(\w+)", task_str)
+    priority_match = re.search(r"#(\w+)", task_str)
+    priority = priority_match.group(1) if priority_match else None
+    due_match = re.search(r"due:(\d{4}-\d{2}-\d{2})", task_str)
+    due = datetime.strptime(due_match.group(1), "%Y-%m-%d") if due_match else None
+    assigned_match = re.search(r"assigned:(\S+)", task_str)
+    assigned = assigned_match.group(1) if assigned_match else None
+    description = re.sub(r"@(\w+)|#(\w+)|due:\d{4}-\d{2}-\d{2}|assigned:\S+", "", task_str).strip()
+    
     return {
-        "description": cleaned_text,
+        "description": description,
         "tags": tags,
         "priority": priority,
-        "due_date": due_date,
-        "assigned_to": assigned_to
+        "due": due,
+        "assigned": assigned
     }

@@ -1,9 +1,16 @@
 import re
 
-EMAIL_REGEX = re.compile(r'^[\w\.-]+@[\w\.-]+\.\w+$')
-
-def is_valid_email(email):
-    """Return True if email is valid."""
+def validate_email(email):
     if not email:
-        return False
-    return EMAIL_REGEX.match(email) is not None
+        return True
+    return bool(re.match(r"[^@]+@[^@]+\.[^@]+", email))
+
+def validate_priority(priority):
+    return priority in ["low", "medium", "high", None]
+
+def validate_task(task_dict):
+    if not validate_email(task_dict.get("assigned")):
+        return False, "Invalid email"
+    if not validate_priority(task_dict.get("priority")):
+        return False, "Invalid priority"
+    return True, "Valid task"

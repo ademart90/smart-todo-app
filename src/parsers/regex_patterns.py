@@ -1,7 +1,17 @@
 import re
 
-#Regex patterns for the different components
-TAG_PATTERN = re.compile(r'@(\w+)')
-PRIORITY_PATTERN = re.compile(r'#(high|medium|low)', re.IGNORECASE)
-DATE_PATTERN = re.compile(r'due:(\d{4}-\d{2}-\d{2}|tomorrow|next week)', re.IGNORECASE)
-EMAIL_PATTERN = re.compile(r'assigned:([\w\.-]+@[\w\.-]+\.\w+)', re.IGNORECASE)
+def search_by_keyword(tasks, keyword):
+    pattern = re.compile(keyword, re.IGNORECASE)
+    return [task for task in tasks if pattern.search(task["description"])]
+
+def filter_by_tag(tasks, tag):
+    pattern = re.compile(rf"@{tag}\b", re.IGNORECASE)
+    return [task for task in tasks if pattern.search(task["description"])]
+
+def filter_by_priority(tasks, priority):
+    pattern = re.compile(rf"#{priority}\b", re.IGNORECASE)
+    return [task for task in tasks if pattern.search(task["description"])]
+
+def filter_by_date(tasks, date_pattern):
+    pattern = re.compile(rf"{date_pattern}")
+    return [task for task in tasks if pattern.search(task["description"])]
