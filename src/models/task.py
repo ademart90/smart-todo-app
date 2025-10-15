@@ -1,21 +1,23 @@
-
-import uuid
 from datetime import datetime
 
 class Task:
-    def __init__(self, description: str, completed: bool = False, task_id: str = None):
-        self.id = task_id or str(uuid.uuid4())  # unique ID
+    def __init__(self, description, tags=None, priority=None, due=None, assigned=None, completed=False):
         self.description = description
+        self.tags = tags or []
+        self.priority = priority
+        self.due = due  # datetime or None
+        self.assigned = assigned
         self.completed = completed
-        self.created_at = datetime.now().isoformat()
 
     def to_dict(self):
         """Convert Task object to dictionary to save to json)."""
         return {
-            "id": self.id,
             "description": self.description,
-            "completed": self.completed,
-            "created_at": self.created_at,
+            "tags": self.tags,
+            "priority": self.priority,
+            "due": self.due.strftime("%Y-%m-%d") if isinstance(self.due, datetime) else None,
+            "assigned": self.assigned,
+            "completed": self.completed
         }
 
     @staticmethod
@@ -28,5 +30,5 @@ class Task:
         )
 
     def __repr__(self):
-        status = "completed" if self.completed else "not completed"
-        return f"[{status}] {self.description} (ID: {self.id[:8]})"
+        return f"<Task {self.description} | Priority: {self.priority} | Due: {self.due} | Completed: {self.completed}>"
+
