@@ -26,7 +26,6 @@ class Task:
         return Task( 
             description=data["description"],
             completed=data["completed"],
-            task_id=data["id"],
         )
 
     def __repr__(self):
