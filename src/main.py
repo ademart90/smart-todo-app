@@ -1,6 +1,7 @@
 from cli.interface import *
 
 def main():
+    load_tasks(todo_list)
     while True:
         print("\nOptions: add | list | search_by_keyword | search_by_priority | filter_by_tag | filter_by_due | mark_complete | mark_incomplete | update | delete | exit")
         choice = input("Enter choice: ").strip().lower()

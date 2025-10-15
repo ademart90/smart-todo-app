@@ -5,7 +5,7 @@ from models.todo_list import TodoList
 from storage import save_tasks, load_tasks
 
 todo_list = TodoList()
-load_tasks(todo_list)
+
 
 def add_task_interface(task_str):
     task_data = parse_task(task_str)
