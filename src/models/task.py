@@ -10,6 +10,7 @@ class Task:
         self.completed = completed
 
     def to_dict(self):
+        """Convert Task object to dictionary to save to json)."""
         return {
             "description": self.description,
             "tags": self.tags,
@@ -21,26 +22,11 @@ class Task:
 
     @staticmethod
     def from_dict(data):
-         due = data.get("due")
-
-        # ✅ Only parse if it's a string
-         if isinstance(due, str):
-            try:
-                due = datetime.strptime(due, "%Y-%m-%d %H:%M:%S")
-            except ValueError:
-                try:
-                    due = datetime.strptime(due, "%Y-%m-%d")
-                except ValueError:
-                    due = None
-
-
-         return Task(
-            description=data.get("description"),
-            tags=data.get("tags", []),
-            priority=data.get("priority"),
-            due=due,
-            assigned=data.get("assigned"),
-            completed=data.get("completed", False)
+        """Create Task object from dictionary to load from JSON)."""
+        return Task( 
+            description=data["description"],
+            completed=data["completed"],
+            task_id=data["id"],
         )
 
     def __repr__(self):
