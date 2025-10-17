@@ -27,7 +27,7 @@ def test_filter_by_tag(sample_tasks):
 
 def test_filter_by_priority(sample_tasks):
     result = filter_by_priority(sample_tasks, "high")
-    assert len(result) == 2  # 2 tasks with #high
+    assert len(result) == 2  
     for task in result:
         assert "#high" in task["description"]
 
