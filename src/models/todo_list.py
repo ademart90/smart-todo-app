@@ -41,8 +41,10 @@ class TodoList:
     def filter_by_tag(self, tag):
         return [t for t in self.tasks if tag in t.tags]
 
-    def filter_by_due_date(self, due_date):
-        return [t for t in self.tasks if t.due and t.due.strftime("%Y-%m-%d") == due_date]
+    
+    def filter_by_date(self, due):
+        return [task for task in self.tasks if task.due == due ]
+
 
     def mark_complete(self, index):
         self.tasks[index].completed = True

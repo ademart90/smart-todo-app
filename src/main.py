@@ -3,7 +3,7 @@ from cli.interface import *
 def main():
     load_tasks(todo_list)
     while True:
-        print("\nOptions: add | list | search_by_keyword | search_by_priority | filter_by_tag | filter_by_due | mark_complete | mark_incomplete | update | delete | exit")
+        print("\nOptions: add | list | search_by_keyword | search_by_priority | filter_by_tag | filter_by_date | mark_complete | mark_incomplete | update | delete | exit")
         choice = input("Enter choice: ").strip().lower()
 
         if choice == "add":
@@ -18,8 +18,8 @@ def main():
             search_priority_interface()
         elif choice == "filter_by_tag":
             filter_tag_interface()
-        elif choice == "filter_by_due":
-            filter_due_interface()
+        elif choice == "filter_by_date":
+            filter_by_date_interface()
         elif choice == "mark_complete":
             mark_interface()
         elif choice == "mark_incomplete":

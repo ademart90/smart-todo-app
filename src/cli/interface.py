@@ -7,6 +7,7 @@ from storage import save_tasks, load_tasks
 todo_list = TodoList()
 
 
+
 def add_task_interface(task_str):
     task_data = parse_task(task_str)
     valid, msg = validate_task(task_data)
@@ -57,37 +58,65 @@ def filter_tag_interface():
     for t in results:
         print(t)
 
-def filter_due_interface():
-    due = input("Enter due date (YYYY-MM-DD): ")
-    results = todo_list.filter_by_due_date(due)
+def filter_by_date_interface():
+    due = input("Enter a date (e.g. YYYY-MM-DD): ").strip()
+    results = todo_list.filter_by_date(due)
     if not results:
-        print(f"No tasks due on {due}")
+        print(f"No tasks found for {due}")
         return
+
+    print(f"Tasks on {due}:")
     for t in results:
         print(t)
 
 def mark_interface():
-    index = int(input("Enter task index to mark complete: "))
-    todo_list.mark_complete(index)
-    save_tasks(todo_list)
-    print("Task marked complete!")
+    try:
+        index = int(input("Enter task index to mark complete: "))
+        if index < 0 or index >= len(todo_list.tasks):
+            print(f"Invalid index. Please choose between 0 and {len(todo_list.tasks)-1}.")
+            return
+        todo_list.mark_complete(index)
+        save_tasks(todo_list)
+        print("Task marked complete!")
+    except ValueError:
+        print("Invalid input. Please enter a number.")
 
 def unmark_interface():
-    index = int(input("Enter task index to mark incomplete: "))
-    todo_list.mark_incomplete(index)
-    save_tasks(todo_list)
-    print("Task marked incomplete!")
+    try:
+        index = int(input("Enter task index to mark incomplete: "))
+        if index < 0 or index >= len(todo_list.tasks):
+            print(f"Invalid index. Please choose between 0 and {len(todo_list.tasks)-1}.")
+            return
+        todo_list.mark_complete(index)
+        save_tasks(todo_list)
+        print("Task marked incomplete!")
+    except ValueError:
+        print("Invalid input. Please enter a number.")
 
 def update_interface():
-    index = int(input("Enter task index to update: "))
-    field = input("Enter field to update (description, priority, assigned): ")
-    value = input(f"Enter new value for {field}: ")
-    todo_list.update_task(index, **{field: value})
-    save_tasks(todo_list)
-    print("Task updated!")
+    try:
+        index = int(input("Enter task index to update: "))
+        if index < 0 or index >= len(todo_list.tasks):
+            print(f"Invalid index. Please choose between 0 and {len(todo_list.tasks)-1}.")
+            return
+
+        field = input("Enter field to update (description, priority, assigned): ")
+        value = input(f"Enter new value for {field}: ")
+        todo_list.update_task(index, **{field: value})
+        save_tasks(todo_list)
+        print("Task updated!")
+    except ValueError:
+        print("Invalid input. Please enter a number.")
 
 def delete_interface():
-    index = int(input("Enter task index to delete: "))
-    todo_list.delete_task(index)
-    save_tasks(todo_list)
-    print("Task deleted!")
+    try:
+        index = int(input("Enter task index to delete: "))
+        if index < 0 or index >= len(todo_list.tasks):
+            print(f"Invalid index. Please choose between 0 and {len(todo_list.tasks)-1}.")
+            return
+
+        todo_list.delete_task(index)
+        save_tasks(todo_list)
+        print("Task deleted!")
+    except ValueError:
+        print("Invalid input. Please enter a number.")

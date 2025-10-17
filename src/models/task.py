@@ -1,5 +1,4 @@
 from datetime import datetime
-
 class Task:
     def __init__(self, description, tags=None, priority=None, due=None, assigned=None, completed=False):
         self.description = description
@@ -10,7 +9,7 @@ class Task:
         self.completed = completed
 
     def to_dict(self):
-        """Convert Task object to dictionary to save to json)."""
+        """Convert Task object to dictionary to save to JSON."""
         return {
             "description": self.description,
             "tags": self.tags,
@@ -22,12 +21,14 @@ class Task:
 
     @staticmethod
     def from_dict(data):
-        """Create Task object from dictionary to load from JSON)."""
-        return Task( 
+        """Create Task object from dictionary to load from JSON."""
+        return Task(
             description=data["description"],
             completed=data["completed"],
+            tags=data.get("tags", []),
+            priority=data.get("priority"),
+            due=data.get("due"),
         )
 
     def __repr__(self):
         return f"<Task {self.description} | Priority: {self.priority} | Due: {self.due} | Completed: {self.completed}>"
-
