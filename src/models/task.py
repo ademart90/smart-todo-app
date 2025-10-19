@@ -28,7 +28,8 @@ class Task:
             tags=data.get("tags", []),
             priority=data.get("priority"),
             due=data.get("due"),
+            assigned=data.get("assigned")
         )
 
     def __repr__(self):
-        return f"<Task {self.description} | Priority: {self.priority} | Due: {self.due} | Completed: {self.completed}>"
+        return f"<Task {self.description} | Tags: {self.tags} | Priority: {self.priority} | Due: {self.due} | Completed: {self.completed}>"

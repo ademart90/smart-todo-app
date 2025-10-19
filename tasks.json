@@ -126,7 +126,37 @@
         ],
         "priority": "high",
         "due": "2025-10-23",
-        "assigned": "mart@gmail.com",
+        "assigned": null,
+        "completed": true
+    },
+    {
+        "description": "go to the bank  tomorrow",
+        "tags": [
+            "lagos"
+        ],
+        "priority": null,
+        "due": null,
+        "assigned": null,
+        "completed": false
+    },
+    {
+        "description": "go to school  tomorrow",
+        "tags": [
+            "lagos"
+        ],
+        "priority": null,
+        "due": null,
+        "assigned": null,
+        "completed": false
+    },
+    {
+        "description": "go to the  tomorrow",
+        "tags": [
+            "bank"
+        ],
+        "priority": null,
+        "due": null,
+        "assigned": null,
         "completed": false
     }
 ]
