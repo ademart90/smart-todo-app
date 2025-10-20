@@ -15,15 +15,7 @@ def load_tasks(todo_list, filename="tasks.json"):
             
             #Clear existing tasks before loading new ones
             todo_list.tasks = []
-
             for t in data:
-                if "due" in t and t["due"]:
-                    try:
-                        # Try full datetime first
-                        t["due"] = datetime.strptime(t["due"], "%Y-%m-%d %H:%M:%S")
-                    except ValueError:
-                        # Fallback to date-only
-                        t["due"] = datetime.strptime(t["due"], "%Y-%m-%d")
                 todo_list.tasks.append(Task.from_dict(t))
     except FileNotFoundError:
         pass

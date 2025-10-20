@@ -10,11 +10,12 @@ class Task:
 
     def to_dict(self):
         """Convert Task object to dictionary to save to JSON."""
+        
         return {
             "description": self.description,
             "tags": self.tags,
             "priority": self.priority,
-            "due": self.due.strftime("%Y-%m-%d") if isinstance(self.due, datetime) else None,
+            "due": self.due,
             "assigned": self.assigned,
             "completed": self.completed
         }

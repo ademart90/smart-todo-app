@@ -1,38 +1,36 @@
 [
     {
-        "description": "call doctor   due:today",
-        "tags": [],
+        "description": "go to school",
+        "tags": [
+            "lagos"
+        ],
         "priority": null,
-        "due": null,
+        "due": "tomorrow",
         "assigned": null,
         "completed": false
     },
     {
-        "description": "call doctor  due today",
-        "tags": [],
+        "description": "go to school",
+        "tags": [
+            "lagos"
+        ],
         "priority": null,
-        "due": null,
+        "due": "tomorrow",
         "assigned": null,
         "completed": false
     },
     {
-        "description": "call doctor  due:today",
-        "tags": [],
-        "priority": null,
-        "due": null,
+        "description": "go to school",
+        "tags": [
+            "lagos"
+        ],
+        "priority": "high",
+        "due": "2025-10-12",
         "assigned": null,
         "completed": false
     },
     {
-        "description": "complete project   due:today",
-        "tags": [],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "complete project  today",
+        "description": "filter_by_date",
         "tags": [],
         "priority": null,
         "due": null,
@@ -42,118 +40,6 @@
     {
         "description": "",
         "tags": [],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "go to the  due:tomorrow",
-        "tags": [],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "go to the  due:today assigned",
-        "tags": [],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "go to the  due:today",
-        "tags": [],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "go to the   :martins.com",
-        "tags": [],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": ": go to the   :martins.com",
-        "tags": [],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "go to the  tomorrow",
-        "tags": [],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "due:today",
-        "tags": [],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "buy soap",
-        "tags": [],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "go to",
-        "tags": [],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "go to the bank",
-        "tags": [
-            "akure"
-        ],
-        "priority": "high",
-        "due": "2025-10-23",
-        "assigned": null,
-        "completed": true
-    },
-    {
-        "description": "go to the bank  tomorrow",
-        "tags": [
-            "lagos"
-        ],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "go to school  tomorrow",
-        "tags": [
-            "lagos"
-        ],
-        "priority": null,
-        "due": null,
-        "assigned": null,
-        "completed": false
-    },
-    {
-        "description": "go to the  tomorrow",
-        "tags": [
-            "bank"
-        ],
         "priority": null,
         "due": null,
         "assigned": null,

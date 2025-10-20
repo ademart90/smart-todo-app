@@ -1,12 +1,13 @@
 from parsers.task_parser import parse_task
 from parsers.validator import validate_task
+from parsers.date_parser import DateParser
 from models.task import Task
 from models.todo_list import TodoList
 from storage import save_tasks, load_tasks
+from datetime import datetime
 
 todo_list = TodoList()
-
-
+date_parser = DateParser()
 
 def add_task_interface(task_str):
     task_data = parse_task(task_str)
@@ -59,7 +60,7 @@ def filter_tag_interface():
         print(t)
 
 def filter_by_date_interface():
-    due = input("Enter a date (e.g. YYYY-MM-DD): ").strip()
+    due = input("Enter a date: ").strip()
     results = todo_list.filter_by_date(due)
     if not results:
         print(f"No tasks found for {due}")
